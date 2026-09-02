@@ -141,7 +141,16 @@ export async function POST() {
       { headers: { 'Cache-Control': 'no-store' } },
     );
   } catch (caught) {
-    return mappedError(caught);
+    if (caught instanceof CompanyEmailSettingsError) {
+      return mappedError(caught);
+    }
+    return errorResponse(
+      caught instanceof Error
+        ? caught.message
+        : 'Muna could not connect to the email provider.',
+      422,
+      'EMAIL_CONNECTION_TEST_FAILED',
+    );
   }
 }
 

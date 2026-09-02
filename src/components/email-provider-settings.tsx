@@ -318,6 +318,21 @@ export default function EmailProviderSettings({
                 </label>
               </div>
               <p className="settings-secret-note"><LockKeyhole size={13} /> A saved password is never displayed again. Enter a new one only to replace it.</p>
+              {draft.provider === 'gmail' && (
+                <p className="settings-secret-note">
+                  <KeyRound size={13} /> Gmail requires a 16-digit app password,
+                  not your normal Google password. Turn on 2-Step Verification,
+                  then{' '}
+                  <a
+                    href="https://myaccount.google.com/apppasswords"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    create an app password
+                  </a>
+                  .
+                </p>
+              )}
 
               <div className="settings-section-title"><MailCheck size={16} /><span>Sender identity</span></div>
               <div className="settings-fields-row">
